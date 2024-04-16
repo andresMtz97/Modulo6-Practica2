@@ -5,16 +5,16 @@ import martinez.andres.modulo6practica2.data.remote.PokemonApi
 import martinez.andres.modulo6practica2.data.remote.RetrofitHelper
 import retrofit2.Call
 
-class PokemonRepository() {
+class PokemonRepository {
     private val retrofit = RetrofitHelper.getRetrofit()
     private val pokemonApi: PokemonApi = retrofit.create(PokemonApi::class.java)
 
-    suspend fun getAllPokemon(): Call<Array<Pokemon>> = pokemonApi.getAllPokemon()
+    fun getAllPokemon(): Call<Array<Pokemon>> = pokemonApi.getAllPokemon()
 
     companion object {
         @Volatile
         private var instance: PokemonRepository? = null
-        fun getInsatance(): PokemonRepository = instance ?: synchronized(this) {
+        fun getInstance(): PokemonRepository = instance ?: synchronized(this) {
             instance ?: PokemonRepository().also { instance = it }
         }
     }

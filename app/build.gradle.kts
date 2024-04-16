@@ -64,6 +64,12 @@ dependencies {
     //Coroutines
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
+    //Picasso
+    implementation(libs.picasso)
+
+    //Interceptor
+    implementation(libs.logging.interceptor)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

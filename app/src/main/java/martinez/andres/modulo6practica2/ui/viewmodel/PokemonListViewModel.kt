@@ -11,8 +11,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PokemonListViewModel: ViewModel() {
-    private val repository = PokemonRepository.getInsatance()
+class PokemonListViewModel : ViewModel() {
+    private val repository = PokemonRepository.getInstance()
 
     private val _pokemonList = MutableLiveData<Array<Pokemon>>()
     val pokemonList: LiveData<Array<Pokemon>> = _pokemonList
@@ -26,12 +26,13 @@ class PokemonListViewModel: ViewModel() {
     fun onCreate() {
         viewModelScope.launch {
             _isLoading.postValue(true)
-
             val call: Call<Array<Pokemon>> = repository.getAllPokemon()
-            call.enqueue(object: Callback<Array<Pokemon>> {
+            call.enqueue(object : Callback<Array<Pokemon>> {
                 override fun onResponse(p0: Call<Array<Pokemon>>, r: Response<Array<Pokemon>>) {
                     _isLoading.postValue(false)
-                    r.body().let { _pokemonList.postValue(it ?: emptyArray()) }
+                    r.body().let {
+                        _pokemonList.postValue(it ?: emptyArray())
+                    }
                 }
 
                 override fun onFailure(p0: Call<Array<Pokemon>>, t: Throwable) {

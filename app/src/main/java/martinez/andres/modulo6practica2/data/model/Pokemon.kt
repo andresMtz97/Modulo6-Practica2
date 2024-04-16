@@ -1,7 +1,6 @@
 package martinez.andres.modulo6practica2.data.model
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serial
 
 data class Pokemon(
     @SerializedName("id") val id: Long,

@@ -9,4 +9,17 @@
     <color name="teal_200">#99f6e4</color>
     <color name="teal_700">#0f766e</color>
 
+    <!--  Gray  -->
+    <color name="gray_50">#f9fafb</color>
+    <color name="gray_100">#f3f4f6</color>
+    <color name="gray_200">#e5e7eb</color>
+    <color name="gray_300">#d1d5db</color>
+    <color name="gray_400">#9ca3af</color>
+    <color name="gray_500">#6b7280</color>
+    <color name="gray_600">#4b5563</color>
+    <color name="gray_700">#374151</color>
+    <color name="gray_800">#1f2937</color>
+    <color name="gray_900">#111827</color>
+    <color name="gray_950">#030712</color>
+
 </resources>
