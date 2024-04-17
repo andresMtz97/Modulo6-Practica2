@@ -11,12 +11,10 @@ class PokemonViewHolder(view: View) : ViewHolder(view) {
 
     private val binding = PokemonElementBinding.bind(view)
     fun render(pokemon: Pokemon, onItemClicked: (Pokemon) -> Unit) {
+        Picasso.get().load(pokemon.urlImage).into(binding.ivPokemon)
         binding.tvName.text = pokemon.name
         binding.tvPokedexNumber.text =
             itemView.context.getString(R.string.pokedex_number, pokemon.id)
-
-        Picasso.get().load(pokemon.urlImage).into(binding.ivPokemon)
-
         itemView.setOnClickListener { onItemClicked(pokemon) }
     }
 }
