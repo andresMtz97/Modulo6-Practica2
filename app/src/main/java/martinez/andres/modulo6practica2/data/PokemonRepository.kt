@@ -11,6 +11,8 @@ class PokemonRepository {
 
     fun getAllPokemon(): Call<Array<Pokemon>> = pokemonApi.getAllPokemon()
 
+    fun getPokemon(id: Int): Call<Pokemon> = pokemonApi.getPokemon(id)
+
     companion object {
         @Volatile
         private var instance: PokemonRepository? = null

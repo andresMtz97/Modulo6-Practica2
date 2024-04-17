@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import martinez.andres.modulo6practica2.R
 import martinez.andres.modulo6practica2.data.model.Pokemon
 import martinez.andres.modulo6practica2.databinding.FragmentPokemonListBinding
 import martinez.andres.modulo6practica2.ui.view.adapters.PokemonAdapter
@@ -17,7 +18,7 @@ class PokemonListFragment : Fragment() {
     private var _binding: FragmentPokemonListBinding? = null
     private val binding get() = _binding!!
 
-    private val pokemonListViewModel: PokemonListViewModel by viewModels<PokemonListViewModel>()
+    private val pokemonListViewModel: PokemonListViewModel by viewModels()
 
     private var pokemonList = emptyList<Pokemon>()
     private lateinit var adapter: PokemonAdapter
@@ -39,7 +40,7 @@ class PokemonListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Recycler view init
-        adapter = PokemonAdapter(pokemonList)
+        adapter = PokemonAdapter(pokemonList) {pokemon -> onItemClicked(pokemon) }
         binding.rvPokemon.apply {
             adapter = this@PokemonListFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -55,6 +56,13 @@ class PokemonListFragment : Fragment() {
                 binding.loading.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
             }
         }
+    }
+
+    private fun onItemClicked(pokemon: Pokemon) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, PokemonDetailFragment.newInstance(pokemon.id))
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onDestroy() {

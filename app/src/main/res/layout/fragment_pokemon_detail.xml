@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.fragments.PokemonDetailFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="18dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="18dp" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/ubuntu"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Charizard" />
+
+            <TextView
+                android:id="@+id/tvNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu"
+                android:textColor="@color/gray_500"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                tools:text="No. 6" />
+
+            <ImageView
+                android:id="@+id/ivPokemon"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/gray_200"
+                android:contentDescription="@string/image"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/tvNumber"
+                tools:src="@drawable/ic_broken_image" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/ubuntu"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/ivPokemon"
+                tools:text="Squirtle is a small reptilian Pokémon that resembles a light-blue turtle. While it typically walks on its two short legs, it has been shown to run on all fours in Super Smash Bros. Brawl. It has large, purplish or reddish eyes and a slightly hooked upper lip. Each of its hands and feet have three pointed digits. The end of its long, squirrel-like tail curls inward. Its body is encased by a tough shell that forms and hardens after birth. This shell is brown on the top, pale yellow on the bottom, and has a thick white ridge between the two halves." />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvBaseStats"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/gray_400"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/base_stats"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextViewBaseStats"
+                            android:text="@string/hp" />
+
+                        <TextView
+                            android:id="@+id/tvHp"
+                            style="@style/TextViewStat"
+                            tools:text="255" />
+
+                        <FrameLayout
+                            android:layout_width="255dp"
+                            android:layout_height="match_parent">
+
+                            <View
+                                android:id="@+id/vHp"
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                tools:background="@color/gray_800" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextViewBaseStats"
+                            android:text="@string/attack" />
+
+                        <TextView
+                            android:id="@+id/tvAttack"
+                            style="@style/TextViewStat"
+                            tools:text="255" />
+
+                        <FrameLayout
+                            android:layout_width="255dp"
+                            android:layout_height="match_parent">
+
+                            <View
+                                android:id="@+id/vAttack"
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                tools:background="@color/gray_800" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextViewBaseStats"
+                            android:text="@string/defense" />
+
+                        <TextView
+                            android:id="@+id/tvDefense"
+                            style="@style/TextViewStat"
+                            tools:text="255" />
+
+                        <FrameLayout
+                            android:layout_width="255dp"
+                            android:layout_height="match_parent">
+
+                            <View
+                                android:id="@+id/vDefense"
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                tools:background="@color/gray_800" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextViewBaseStats"
+                            android:text="@string/sp_atk" />
+
+                        <TextView
+                            android:id="@+id/tvSpAtk"
+                            style="@style/TextViewStat"
+                            tools:text="255" />
+
+                        <FrameLayout
+                            android:layout_width="255dp"
+                            android:layout_height="match_parent">
+
+                            <View
+                                android:id="@+id/vSpAtk"
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                tools:background="@color/gray_800" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextViewBaseStats"
+                            android:text="@string/sp_def" />
+
+                        <TextView
+                            android:id="@+id/tvSpDef"
+                            style="@style/TextViewStat"
+                            tools:text="255" />
+
+                        <FrameLayout
+                            android:layout_width="255dp"
+                            android:layout_height="match_parent">
+
+                            <View
+                                android:id="@+id/vSpDef"
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                tools:background="@color/gray_800" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextViewBaseStats"
+                            android:text="@string/speed" />
+
+                        <TextView
+                            android:id="@+id/tvSpeed"
+                            style="@style/TextViewStat"
+                            tools:text="255" />
+
+                        <FrameLayout
+                            android:layout_width="255dp"
+                            android:layout_height="match_parent">
+
+                            <View
+                                android:id="@+id/vSpeed"
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                tools:background="@color/gray_800" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/sky_500"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/cvBaseStats">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="32dp"
+                    android:layout_marginVertical="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/glEnd"
+                    app:layout_constraintStart_toStartOf="@id/glStart"
+                    app:layout_constraintTop_toBottomOf="@id/cvBaseStats">
+
+                    <TextView
+                        style="@style/TextViewExtraInfoLabel"
+                        android:layout_height="wrap_content"
+                        android:text="@string/type" />
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        style="@style/TextViewExtraInfo"
+                        android:layout_height="wrap_content"
+                        tools:text="Grass, Poison" />
+
+                    <TextView
+                        style="@style/TextViewExtraInfoLabel"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weak_to" />
+
+                    <TextView
+                        android:id="@+id/tvWeakTo"
+                        style="@style/TextViewExtraInfo"
+                        android:layout_height="wrap_content"
+                        tools:text="Grass, Poison" />
+
+                    <TextView
+                        style="@style/TextViewExtraInfoLabel"
+                        android:layout_height="wrap_content"
+                        android:text="@string/skills" />
+
+                    <TextView
+                        android:id="@+id/tvSkills"
+                        style="@style/TextViewExtraInfo"
+                        android:layout_height="wrap_content"
+                        tools:text="Grass, Poison" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+</FrameLayout>
