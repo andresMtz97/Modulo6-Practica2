@@ -14,4 +14,8 @@
     <string name="type">Type</string>
     <string name="weak_to">Weak To</string>
     <string name="skills">Skills</string>
+    <string name="error">Error!</string>
+    <string name="try_again_later">An error has occurred, please try again later.</string>
+    <string name="no_data">No data!</string>
+    <string name="try_again">Try Again</string>
 </resources>

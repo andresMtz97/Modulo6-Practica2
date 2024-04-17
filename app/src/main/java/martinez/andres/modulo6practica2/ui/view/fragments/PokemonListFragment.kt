@@ -55,13 +55,19 @@ class PokemonListFragment : Fragment() {
             isLoading.observe(viewLifecycleOwner) { isLoading ->
                 binding.loading.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
             }
+
+            error.observe(viewLifecycleOwner) {message ->
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, ErrorFragment.newInstance(message))
+                    .commit()
+            }
         }
     }
 
     private fun onItemClicked(pokemon: Pokemon) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, PokemonDetailFragment.newInstance(pokemon.id))
-            .addToBackStack(null)
+            .addToBackStack("DETAIL")
             .commit()
     }
 

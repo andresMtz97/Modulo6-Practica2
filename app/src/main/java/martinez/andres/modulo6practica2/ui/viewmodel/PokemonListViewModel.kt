@@ -29,9 +29,13 @@ class PokemonListViewModel : ViewModel() {
             val call: Call<Array<Pokemon>> = repository.getAllPokemon()
             call.enqueue(object : Callback<Array<Pokemon>> {
                 override fun onResponse(p0: Call<Array<Pokemon>>, r: Response<Array<Pokemon>>) {
-                    _isLoading.postValue(false)
-                    r.body().let {
-                        _pokemonList.postValue(it ?: emptyArray())
+                    if (r.body() == null) {
+                        _error.postValue("Error connecting with API.")
+                    } else {
+                        _isLoading.postValue(false)
+                        r.body().let {
+                            _pokemonList.postValue(it ?: emptyArray())
+                        }
                     }
                 }
 

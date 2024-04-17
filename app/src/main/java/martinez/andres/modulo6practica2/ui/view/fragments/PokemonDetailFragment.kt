@@ -1,6 +1,5 @@
 package martinez.andres.modulo6practica2.ui.view.fragments
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -59,6 +58,12 @@ class PokemonDetailFragment : Fragment() {
             isLoading.observe(viewLifecycleOwner) { isLoading ->
                 binding.loading.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
                 binding.clData.visibility = if (isLoading) View.INVISIBLE else View.VISIBLE
+            }
+
+            error.observe(viewLifecycleOwner) {message ->
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, ErrorFragment.newInstance(message))
+                    .commit()
             }
         }
     }
