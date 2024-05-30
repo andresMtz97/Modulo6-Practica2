@@ -6,6 +6,7 @@ data class Pokemon(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
     @SerializedName("urlImage") val urlImage: String,
+    @SerializedName("urlVideo") val urlVideo: String?,
     @SerializedName("description") val description: String?,
     @SerializedName("type") val type: Array<String>?,
     @SerializedName("weak_to") val weakTo: Array<String>?,

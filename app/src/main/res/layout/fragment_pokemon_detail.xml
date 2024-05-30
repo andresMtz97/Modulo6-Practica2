@@ -70,6 +70,23 @@
                 app:layout_constraintTop_toBottomOf="@id/tvNumber"
                 tools:src="@drawable/ic_broken_image" />
 
+            <FrameLayout
+                android:id="@+id/flVideo"
+                android:layout_width="0dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/ivPokemon">
+
+                <VideoView
+                    android:id="@+id/vvVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="0dp"
@@ -81,7 +98,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@id/ivPokemon"
+                app:layout_constraintTop_toBottomOf="@id/flVideo"
                 tools:text="Squirtle is a small reptilian Pokémon that resembles a light-blue turtle. While it typically walks on its two short legs, it has been shown to run on all fours in Super Smash Bros. Brawl. It has large, purplish or reddish eyes and a slightly hooked upper lip. Each of its hands and feet have three pointed digits. The end of its long, squirrel-like tail curls inward. Its body is encased by a tough shell that forms and hardens after birth. This shell is brown on the top, pale yellow on the bottom, and has a thick white ridge between the two halves." />
 
             <androidx.cardview.widget.CardView
@@ -276,6 +293,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvExtra"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -329,7 +347,6 @@
                         tools:text="Grass, Poison" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

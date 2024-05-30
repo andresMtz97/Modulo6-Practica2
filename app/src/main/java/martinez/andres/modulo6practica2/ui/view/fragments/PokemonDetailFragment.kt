@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.squareup.picasso.Picasso
 import martinez.andres.modulo6practica2.R
 import martinez.andres.modulo6practica2.data.model.BaseStats
+import martinez.andres.modulo6practica2.data.model.Pokemon
 import martinez.andres.modulo6practica2.databinding.FragmentPokemonDetailBinding
 import martinez.andres.modulo6practica2.ui.viewmodel.PokemonDetailViewModel
 
@@ -42,7 +44,7 @@ class PokemonDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         pokemonDetailViewModel.apply {
-            pokemon.observe(viewLifecycleOwner) {pokemon ->
+            pokemon.observe(viewLifecycleOwner) { pokemon ->
                 Picasso.get().load(pokemon.urlImage).into(binding.ivPokemon)
                 binding.apply {
                     tvName.text = pokemon.name
@@ -52,6 +54,7 @@ class PokemonDetailFragment : Fragment() {
                     tvType.text = pokemon.type?.joinToString(", ") ?: ""
                     tvWeakTo.text = pokemon.weakTo?.joinToString(", ") ?: ""
                     tvSkills.text = pokemon.skills?.joinToString(", ") ?: ""
+                    initVideoView(pokemon)
                 }
             }
 
@@ -109,6 +112,15 @@ class PokemonDetailFragment : Fragment() {
     private fun dpToPx(dp: Int): Int {
         val density = resources.displayMetrics.density
         return Math.round(dp * density)
+    }
+
+    private fun initVideoView(pokemon: Pokemon) {
+        binding.vvVideo.setVideoPath(pokemon.urlVideo)
+        val mc = MediaController(requireContext())
+        mc.setAnchorView(binding.vvVideo)
+        binding.vvVideo.setMediaController(mc)
+        binding.vvVideo.setOnPreparedListener { it.start() }
+        binding.vvVideo.setOnCompletionListener { it.start() }
     }
 
     override fun onDestroy() {
