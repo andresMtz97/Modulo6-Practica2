@@ -1,5 +1,6 @@
 package martinez.andres.modulo6practica2.ui.view.fragments
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,8 @@ class PokemonListFragment : Fragment() {
     private var pokemonList = emptyList<Pokemon>()
     private lateinit var adapter: PokemonAdapter
 
+    private lateinit var mp: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pokemonListViewModel.onCreate()
@@ -38,6 +41,8 @@ class PokemonListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mp = MediaPlayer.create(requireContext(), R.raw.pokemon_recovery)
 
         //Recycler view init
         adapter = PokemonAdapter(pokemonList) {pokemon -> onItemClicked(pokemon) }
@@ -64,6 +69,11 @@ class PokemonListFragment : Fragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        mp.start()
+    }
+
     private fun onItemClicked(pokemon: Pokemon) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, PokemonDetailFragment.newInstance(pokemon.id))
@@ -74,5 +84,6 @@ class PokemonListFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        mp.release()
     }
 }
