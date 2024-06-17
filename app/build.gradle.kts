@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -69,6 +70,10 @@ dependencies {
 
     //Interceptor
     implementation(libs.logging.interceptor)
+    implementation(libs.firebase.auth)
+
+    //Google Maps
+    implementation(libs.play.services.maps)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

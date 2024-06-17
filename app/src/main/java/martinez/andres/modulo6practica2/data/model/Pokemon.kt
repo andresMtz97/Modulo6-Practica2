@@ -12,5 +12,5 @@ data class Pokemon(
     @SerializedName("weak_to") val weakTo: Array<String>?,
     @SerializedName("skills") val skills: Array<String>?,
     @SerializedName("base_stats") val baseStats: BaseStats?,
-
+    @SerializedName("location") val location: Array<Double>?
 )

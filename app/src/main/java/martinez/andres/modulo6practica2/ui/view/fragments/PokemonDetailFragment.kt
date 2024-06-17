@@ -1,12 +1,24 @@
 package martinez.andres.modulo6practica2.ui.view.fragments
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso
 import martinez.andres.modulo6practica2.R
 import martinez.andres.modulo6practica2.data.model.BaseStats
@@ -14,9 +26,10 @@ import martinez.andres.modulo6practica2.data.model.Pokemon
 import martinez.andres.modulo6practica2.databinding.FragmentPokemonDetailBinding
 import martinez.andres.modulo6practica2.ui.viewmodel.PokemonDetailViewModel
 
+
 private const val POKEMON_ID = "pokemonId"
 
-class PokemonDetailFragment : Fragment() {
+class PokemonDetailFragment : Fragment(), OnMapReadyCallback {
     private var id: Int? = null
 
     private var _binding: FragmentPokemonDetailBinding? = null
@@ -24,12 +37,15 @@ class PokemonDetailFragment : Fragment() {
 
     private val pokemonDetailViewModel: PokemonDetailViewModel by viewModels()
 
+    private lateinit var map: GoogleMap
+    private lateinit var location: LatLng
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             id = it.getInt(POKEMON_ID)
         }
-        pokemonDetailViewModel.onCreate(id)
+        //pokemonDetailViewModel.onCreate(id)
     }
 
     override fun onCreateView(
@@ -42,6 +58,9 @@ class PokemonDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mapFragment: SupportMapFragment =
+            childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
         pokemonDetailViewModel.apply {
             pokemon.observe(viewLifecycleOwner) { pokemon ->
@@ -55,6 +74,20 @@ class PokemonDetailFragment : Fragment() {
                     tvWeakTo.text = pokemon.weakTo?.joinToString(", ") ?: ""
                     tvSkills.text = pokemon.skills?.joinToString(", ") ?: ""
                     initVideoView(pokemon)
+                    if (pokemon.location != null) {
+                        location = LatLng(pokemon.location[0], pokemon.location[1])
+                        map.addMarker(
+                            MarkerOptions()
+                            .position(location)
+                            .title(pokemon.name)
+                            .snippet(pokemon.id.toString())
+                            .icon(bitmapFromVector(requireContext(), R.drawable.ic_pokeball)))
+                        map.animateCamera(
+                            CameraUpdateFactory.newLatLngZoom(location, 18f),
+                            2000,
+                            null
+                        )
+                    }
                 }
             }
 
@@ -136,5 +169,27 @@ class PokemonDetailFragment : Fragment() {
                     putInt(POKEMON_ID, id)
                 }
             }
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+        pokemonDetailViewModel.onCreate(id)
+    }
+
+    private fun bitmapFromVector(context: Context, vectorResId: Int): BitmapDescriptor {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+        vectorDrawable!!.setBounds(
+            0, 0, vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight
+        )
+        val bitmap = Bitmap.createBitmap(
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.draw(canvas)
+
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 }

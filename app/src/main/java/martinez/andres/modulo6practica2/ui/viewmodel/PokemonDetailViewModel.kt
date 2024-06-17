@@ -1,5 +1,6 @@
 package martinez.andres.modulo6practica2.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,6 +36,7 @@ class PokemonDetailViewModel: ViewModel() {
                         } else {
                             _isLoading.postValue(false)
                             r.body().let {
+                                Log.d("Pokemon", it.toString())
                                 _pokemon.postValue(it)
                             }
                         }

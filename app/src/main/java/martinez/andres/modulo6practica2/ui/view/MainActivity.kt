@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import martinez.andres.modulo6practica2.databinding.ActivityMainBinding
+import martinez.andres.modulo6practica2.ui.view.fragments.Login
 import martinez.andres.modulo6practica2.ui.view.fragments.PokemonListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(binding.fragmentContainer.id, PokemonListFragment())
+                .replace(binding.fragmentContainer.id, Login())
                 .commit()
         }
     }

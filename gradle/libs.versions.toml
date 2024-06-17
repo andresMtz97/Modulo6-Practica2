@@ -1,22 +1,25 @@
 [versions]
-activityKtx = "1.8.2"
-agp = "8.3.2"
-converterGson = "2.10.0"
+activityKtx = "1.9.0"
+agp = "8.4.2"
+converterGson = "2.11.0"
 coreSplashscreen = "1.0.1"
-fragmentKtx = "1.6.2"
+fragmentKtx = "1.8.0"
 kotlin = "1.9.0"
-coreKtx = "1.12.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-appcompat = "1.6.1"
-lifecycleViewmodelKtx = "2.7.0"
+appcompat = "1.7.0"
+lifecycleViewmodelKtx = "2.8.2"
 loggingInterceptor = "4.10.0"
-material = "1.11.0"
-activity = "1.8.2"
+material = "1.12.0"
+activity = "1.9.0"
 constraintlayout = "2.1.4"
 picasso = "2.71828"
 retrofit = "2.11.0"
+googleGmsGoogleServices = "4.4.2"
+firebaseAuth = "23.0.0"
+playServicesMaps = "18.2.0"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -37,8 +40,11 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+googleGmsGoogleServices = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

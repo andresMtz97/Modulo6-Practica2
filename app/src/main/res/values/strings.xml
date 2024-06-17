@@ -18,4 +18,15 @@
     <string name="try_again_later">An error has occurred, please try again later.</string>
     <string name="no_data">No data!</string>
     <string name="try_again">Try Again</string>
+    <string name="copy_right">© Diplo Móviles</string>
+    <string name="restore_password">¿Olvidó su contraseña? Restablecer aquí</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="sign_in">Ingresar</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Correo electrónico</string>
+    <string name="diplo">Diplomado Desarrollo de Aplicaciones para Dispositivos Móviles</string>
+    <string name="second_practice">Práctica 2</string>
+    <string name="module">Módulo 8</string>
+    <string name="top_background">Top Background</string>
+    <string name="logout">Cerrar sesión</string>
 </resources>

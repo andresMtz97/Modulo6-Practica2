@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import martinez.andres.modulo6practica2.R
 import martinez.andres.modulo6practica2.data.model.Pokemon
 import martinez.andres.modulo6practica2.databinding.FragmentPokemonListBinding
@@ -26,6 +27,8 @@ class PokemonListFragment : Fragment() {
 
     private lateinit var mp: MediaPlayer
 
+    private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pokemonListViewModel.onCreate()
@@ -41,6 +44,8 @@ class PokemonListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        firebaseAuth = FirebaseAuth.getInstance()
 
         mp = MediaPlayer.create(requireContext(), R.raw.pokemon_recovery)
 
@@ -66,6 +71,13 @@ class PokemonListFragment : Fragment() {
                     .replace(R.id.fragment_container, ErrorFragment.newInstance(message))
                     .commit()
             }
+        }
+
+        binding.fabLogout.setOnClickListener {
+            firebaseAuth.signOut()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, Login())
+                .commit()
         }
     }
 
